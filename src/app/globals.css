@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  /* โทนหลัก: น้ำตาลหมูย่าง + ครีมข้าวเหนียว + ส้มอุ่น ๆ */
+  --pork: #8b4e2f;        /* Grilled Pork Brown — สีแบรนด์ / header / ปุ่ม */
+  --pork-deep: #6e3c22;
+  --charcoal: #33251f;    /* ตัวหนังสือ / footer */
+  --ash: #6b564b;         /* ตัวหนังสือรอง */
+  --caramel: #c77b35;     /* Caramel Grill — ปุ่มหลัก / ไฮไลต์ */
+  --caramel-deep: #a8622a;
+  --cream: #fff3d6;       /* Sticky Rice Cream — พื้นหลังหลัก */
+  --warm: #fff9ec;        /* Warm Cream — การ์ด */
+  --rice: #e5b85c;        /* Golden Rice — เส้น / accent */
+  --rice-deep: #c9971f;
+  --leaf: #657447;        /* ใบตอง — แต้มเล็ก ๆ */
+}
+
+@theme inline {
+  --color-pork: var(--pork);
+  --color-pork-deep: var(--pork-deep);
+  --color-charcoal: var(--charcoal);
+  --color-ash: var(--ash);
+  --color-caramel: var(--caramel);
+  --color-caramel-deep: var(--caramel-deep);
+  --color-cream: var(--cream);
+  --color-warm: var(--warm);
+  --color-rice: var(--rice);
+  --color-rice-deep: var(--rice-deep);
+  --color-leaf: var(--leaf);
+  --font-display: var(--font-mali);
+  --font-sans: var(--font-noto-thai);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  /* สระบน/วรรณยุกต์ไทยต้องการ line-height เผื่อไว้ */
+  line-height: 1.45;
+}
+
+@keyframes smoke {
+  0% { transform: translateY(0) scaleX(1); opacity: 0.5; }
+  100% { transform: translateY(-18px) scaleX(1.4); opacity: 0; }
+}
+.animate-smoke { animation: smoke 2.4s ease-out infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+  50% { transform: translateY(-10px) rotate(var(--r, 0deg)); }
+}
+.animate-float { animation: float 5s ease-in-out infinite; }
