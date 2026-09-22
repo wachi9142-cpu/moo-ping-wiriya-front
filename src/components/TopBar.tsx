@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { owners, site } from "@/data/site";
 import { LogoMark, LogoText } from "./Logo";
-import { LogoMark, LogoText } from "./Logo";
 
 const links = [
   { href: "/#menu", label: "🍢 เมนู" },

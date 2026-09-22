@@ -1,7 +1,7 @@
 export const site = {
   name: "หมูปิ้งวิริญา",
   nameEn: "Wiriya Moo Ping",
-  tagline: "ข้าวเหนียวหมูปิ้ง ไม้ละ 5 บาท ย่างสด ๆ ขายทุกเช้า",
+  tagline: "หมูปิ้งข้าวเหนียววิริญา ไม้ละ 5 บาท ย่างสด ๆ ขายทุกเช้า",
   address: "ซ. ลาดกระบัง 7 แขวงลาดกระบัง เขตลาดกระบัง กรุงเทพมหานคร 10520",
   location: "ข้างบ้าน ติดกับหมู่บ้าน/ซอยประเสริฐสุข — บริเวณเดียวกับร้านน้ำเต้าหู้ Pumpkin&Melone และวิของชำ",
   mapsUrl: "https://maps.app.goo.gl/7V3KssWFJXyhYwPL8",
@@ -60,7 +60,7 @@ export const photoSlots: PhotoSlot[] = [
   { id: "rice", label: "ข้าวเหนียว", emoji: "🍚", src: "/images/sticky-rice.jpg", caption: "ข้าวเหนียวร้อน ๆ" },
   { id: "laundry", label: "เครื่องซักผ้า", emoji: "🧺", src: "/images/laundry.jpg", caption: "เครื่องซักผ้าหยอดเหรียญ ถัง 30 / 40 บาท" },
   { id: "coin", label: "บริเวณจุดแลกเหรียญ", emoji: "🪙" },
-  { id: "sign", label: "ป้ายร้าน", emoji: "🪧", src: "/images/sign.jpg", caption: "ป้ายร้าน ข้าวเหนียวหมูปิ้ง ไม้ละ 5 บาท" },
+  { id: "sign", label: "ป้ายร้าน", emoji: "🪧", src: "/images/sign.jpg", caption: "ป้ายร้าน หมูปิ้งข้าวเหนียว ไม้ละ 5 บาท" },
   { id: "closeup", label: "หมูปิ้งใกล้ ๆ", emoji: "🔍", src: "/images/closeup.jpg", caption: "หมูนุ่ม ฉ่ำ ๆ ใกล้ ๆ" },
   { id: "skewers", label: "หมูปิ้งหลายไม้", emoji: "🍢", src: "/images/skewers-leaf.jpg", caption: "ไม้ละ 5 บาท ซื้อกี่ไม้ก็ได้" },
   { id: "fresh", label: "ย่างเสร็จใหม่ ๆ", emoji: "🔥", src: "/images/two-skewers.jpg", caption: "ย่างเสร็จใหม่ ๆ ร้อน ๆ" },

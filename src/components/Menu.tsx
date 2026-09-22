@@ -11,7 +11,7 @@ const tips = [
 export function Menu() {
   return (
     <section id="menu" className="mx-auto max-w-6xl px-4 py-20">
-      <SectionTitle sub="เมนูมีแค่ 2 อย่าง แต่ทำให้ดีทุกเช้า — ย่างสดหน้าร้าน ไม่ค้างคืน">🍢 เมนูและราคา</SectionTitle>
+      <SectionTitle sub="ร้านขายหลัก ๆ แค่ 2 อย่าง — ย่างสดหน้าร้านทุกเช้า">🍢 เมนูและราคา</SectionTitle>
       <div className="grid gap-6 md:grid-cols-2">
         {menu.map((m) => (
           <article key={m.name} className="flex gap-5 overflow-hidden rounded-3xl bg-warm p-4 shadow-md ring-1 ring-rice/40">

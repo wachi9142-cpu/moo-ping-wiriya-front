@@ -20,11 +20,11 @@ export function Hero() {
           <span className="inline-flex items-center gap-2 rounded-full bg-warm px-3 py-1 text-xs font-semibold text-pork ring-1 ring-rice">
             🕟 เริ่มขายตี 4 ครึ่ง • ขายจนกว่าจะหมด
           </span>
-          <h1 className="font-display mt-4 text-4xl font-bold leading-tight text-pork md:text-6xl">
-            ข้าวเหนียว
-            <span className="block text-5xl text-caramel md:text-7xl">หมูปิ้ง</span>
-            <span className="block text-2xl text-charcoal md:text-3xl">วิริญา</span>
-            <span className="block text-base font-semibold text-pork">Wiriya <span className="text-caramel">Moo Ping</span></span>
+          <h1 className="font-display mt-4 text-4xl font-bold leading-[1.6] text-pork md:text-6xl">
+            <span className="block text-5xl leading-[1.5] text-caramel md:text-7xl">หมูปิ้ง</span>
+            <span className="mt-2 block">ข้าวเหนียว</span>
+            <span className="mt-3 block text-2xl leading-[1.6] text-charcoal md:text-3xl">วิริญา</span>
+            <span className="mt-2 block text-base leading-[1.6] font-semibold text-pork">Wiriya <span className="text-caramel">Moo Ping</span></span>
           </h1>
           <p className="font-display mt-4 text-lg font-semibold text-charcoal">ย่างสด ๆ หน้าร้าน หอมควันถ่าน ไม้ละ 5 บาท 🍢🔥</p>
           <p className="mt-3 max-w-md leading-relaxed text-ash">

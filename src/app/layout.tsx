@@ -18,13 +18,13 @@ const notoThai = Noto_Sans_Thai({
   weight: ["400", "500", "600", "700"],
 });
 
-const title = `${site.name} — ${site.tagline}`;
+const title = `${site.name} | ${site.nameEn} — ${site.tagline}`;
 const description =
   "หมูปิ้งย่างสดหน้าร้าน ไม้ละ 5 บาท ข้าวเหนียวห่อละ 5 บาท เริ่มขายตี 4 ครึ่ง ขายจนกว่าจะหมด ลาดกระบัง ซอย 7";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3003"),
-  title: { default: title, template: `%s — ${site.shortName}` },
+  title: { default: title, template: `%s — ${site.name}` },
   description,
   openGraph: {
     type: "website",
