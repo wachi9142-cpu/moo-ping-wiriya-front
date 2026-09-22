@@ -1,24 +1,25 @@
 export const site = {
-  name: "ร้านหมูปิ้งวิริญา",
-  shortName: "หมูปิ้งวิริญา",
+  name: "หมูปิ้งวิริญา",
+  nameEn: "Wiriya Moo Ping",
   tagline: "ข้าวเหนียวหมูปิ้ง ไม้ละ 5 บาท ย่างสด ๆ ขายทุกเช้า",
   address: "ซ. ลาดกระบัง 7 แขวงลาดกระบัง เขตลาดกระบัง กรุงเทพมหานคร 10520",
   location: "ข้างบ้าน ติดกับหมู่บ้าน/ซอยประเสริฐสุข — บริเวณเดียวกับร้านน้ำเต้าหู้ Pumpkin&Melone และวิของชำ",
   mapsUrl: "https://maps.app.goo.gl/7V3KssWFJXyhYwPL8",
   mapsEmbed:
     "https://www.google.com/maps?q=220/11+ซ.+ลาดกระบัง+7+แขวงลาดกระบัง+เขตลาดกระบัง+กรุงเทพมหานคร+10520&output=embed",
-  // เริ่มขายประมาณตี 4 ครึ่ง ขายจนกว่าจะหมด (โดยทั่วไปเก็บร้านราว 9 โมง)
+  // เริ่มขายประมาณตี 4 ครึ่ง โดยทั่วไปขายถึงราว 7 โมง แต่ขายจนกว่าจะหมด (บางวันหมดก่อน)
   open: "04:30",
-  closeApprox: "09:00",
+  closeApprox: "07:00",
   callFirst:
-    "ร้านย่างและขายไปพร้อมกัน และขายจนกว่าสินค้าจะหมด หากหมูปิ้งหมดก่อนเวลาที่คาดไว้ ร้านอาจปิดก่อนเวลา",
+    "หมูปิ้งขายในช่วงเช้าและจำนวนมีจำกัด เวลาหมดในแต่ละวันไม่แน่นอน หากต้องการซื้อหมูปิ้ง แนะนำโทรสอบถามก่อนเดินทางมา เพื่อเช็กว่าวันนั้นยังมีของอยู่หรือไม่",
 };
 
 export type Owner = { name: string; phone: string; phoneDisplay: string };
 
+// ติดต่อร้านหมูปิ้ง
 export const owners: Owner[] = [
   { name: "คุณต๋อง", phone: "0652325188", phoneDisplay: "065-232-5188" },
-  { name: "คุณนิ", phone: "0991017429", phoneDisplay: "099-101-7429" },
+  { name: "คุณใหม่", phone: "0624314828", phoneDisplay: "062-431-4828" },
 ];
 
 export type MenuItem = { name: string; price: number; unit: string; desc: string; image: string; badge?: string };
@@ -28,7 +29,7 @@ export const menu: MenuItem[] = [
     name: "หมูปิ้ง",
     price: 5,
     unit: "บาท / ไม้",
-    desc: "หมูหมักสูตรร้าน ย่างบนเตาถ่านจนหอม นุ่ม ฉ่ำ ไม่แห้ง",
+    desc: "หมูหมักสูตรร้าน ย่างบนเตาถ่านและขายไปพร้อมกันในช่วงเช้า นุ่ม ฉ่ำ หอมควันถ่าน",
     image: "/images/moo-ping-sq.jpg",
     badge: "ขายดี",
   },
@@ -43,41 +44,53 @@ export const menu: MenuItem[] = [
 
 export const details = [
   "🕟 เริ่มขายประมาณ 04:30 น.",
-  "🔥 ย่างสด ๆ หน้าร้าน ขายไปย่างไป",
-  "⏰ ขายจนกว่าของจะหมด — โดยทั่วไปเก็บร้านราว 09:00 น. แต่ไม่แน่นอน",
+  "🔥 ย่างและขายไปพร้อมกันในช่วงเช้า",
+  "⏰ โดยทั่วไปขายช่วงเช้าประมาณ 04:30–07:00 น.",
+  "🍢 เวลาเลิกขายไม่แน่นอน เพราะขายจนกว่าหมูปิ้งจะหมด",
+  "⚡ ปกติหมูปิ้งมักหมดค่อนข้างเร็ว บางวันอาจหมดก่อน 07:00 น.",
   "🛵 ไม่มีบริการ Delivery ซื้อที่หน้าร้านเท่านั้น",
 ];
 
-export type Photo = { src: string; caption: string };
+// ช่องรูปในแกลเลอรี — ช่องที่ยังไม่มีรูปจะขึ้นปุ่ม "＋ เพิ่มภาพ…" ให้เพิ่มเองจากหน้าเว็บ
+export type PhotoSlot = { id: string; label: string; emoji: string; src?: string; caption?: string };
 
-export const gallery: Photo[] = [
-  { src: "/images/storefront.jpg", caption: "หน้าร้าน — ย่างและขายกันตรงนี้เลย" },
-  { src: "/images/sign.jpg", caption: "ป้ายร้าน ข้าวเหนียวหมูปิ้ง ไม้ละ 5 บาท" },
-  { src: "/images/moo-ping-leaf.jpg", caption: "หมูปิ้งย่างใหม่ ๆ บนใบตอง" },
-  { src: "/images/closeup.jpg", caption: "หมูนุ่ม ฉ่ำ ๆ ใกล้ ๆ" },
-  { src: "/images/skewers-leaf.jpg", caption: "ไม้ละ 5 บาท ซื้อกี่ไม้ก็ได้" },
-  { src: "/images/two-skewers.jpg", caption: "ย่างเสร็จใหม่ ๆ ร้อน ๆ" },
-  { src: "/images/sticky-rice.jpg", caption: "ข้าวเหนียวร้อน ๆ" },
-  { src: "/images/sticky-rice-pack.jpg", caption: "ข้าวเหนียวห่อละ 5 บาท" },
+export const photoSlots: PhotoSlot[] = [
+  { id: "stall", label: "ร้าน/รถเข็นหมูปิ้ง", emoji: "🏠", src: "/images/storefront.jpg", caption: "หน้าร้าน — ย่างและขายกันตรงนี้เลย" },
+  { id: "pork", label: "หมูปิ้ง", emoji: "🥩", src: "/images/moo-ping-leaf.jpg", caption: "หมูปิ้งย่างใหม่ ๆ บนใบตอง" },
+  { id: "rice", label: "ข้าวเหนียว", emoji: "🍚", src: "/images/sticky-rice.jpg", caption: "ข้าวเหนียวร้อน ๆ" },
+  { id: "laundry", label: "เครื่องซักผ้า", emoji: "🧺", src: "/images/laundry.jpg", caption: "เครื่องซักผ้าหยอดเหรียญ ถัง 30 / 40 บาท" },
+  { id: "coin", label: "บริเวณจุดแลกเหรียญ", emoji: "🪙" },
+  { id: "sign", label: "ป้ายร้าน", emoji: "🪧", src: "/images/sign.jpg", caption: "ป้ายร้าน ข้าวเหนียวหมูปิ้ง ไม้ละ 5 บาท" },
+  { id: "closeup", label: "หมูปิ้งใกล้ ๆ", emoji: "🔍", src: "/images/closeup.jpg", caption: "หมูนุ่ม ฉ่ำ ๆ ใกล้ ๆ" },
+  { id: "skewers", label: "หมูปิ้งหลายไม้", emoji: "🍢", src: "/images/skewers-leaf.jpg", caption: "ไม้ละ 5 บาท ซื้อกี่ไม้ก็ได้" },
+  { id: "fresh", label: "ย่างเสร็จใหม่ ๆ", emoji: "🔥", src: "/images/two-skewers.jpg", caption: "ย่างเสร็จใหม่ ๆ ร้อน ๆ" },
+  { id: "ricepack", label: "ข้าวเหนียวห่อ", emoji: "🛍️", src: "/images/sticky-rice-pack.jpg", caption: "ข้าวเหนียวห่อละ 5 บาท" },
+  { id: "morning", label: "บรรยากาศตอนเช้า", emoji: "🌅" },
+  { id: "extra", label: "รูปอื่น ๆ", emoji: "📷" },
 ];
 
 export const laundry = {
   title: "เครื่องซักผ้าหยอดเหรียญ",
-  intro: "นอกจากหมูปิ้งแล้ว หน้าร้านยังมีเครื่องซักผ้าหยอดเหรียญให้บริการตลอด 24 ชั่วโมง",
+  intro: "นอกจากหมูปิ้งแล้ว บริเวณร้านยังมีเครื่องซักผ้าหยอดเหรียญให้บริการ",
+  separateNote: "📌 เครื่องซักผ้าหยอดเหรียญเป็นบริการแยกจากร้านหมูปิ้ง",
+  hoursNote: "สามารถใช้บริการได้ตามเวลาที่เครื่องเปิดให้บริการ",
   image: "/images/laundry.jpg",
-  details: ["🟢 เปิด 24 ชั่วโมง", "🧺 มี 3 เครื่อง: 30 / 30 / 40 บาทต่อครั้ง", "💰 เริ่มต้น 30 บาท", "🪙 ใช้เหรียญ 10 บาทในการหยอดเครื่อง"],
+  prices: ["🪙 เริ่มต้น 30 บาท", "🧺 ถัง 30 บาท", "🧺 ถัง 40 บาท", "🪙 ใช้เหรียญ 10 บาท"],
   coinExchange: {
-    place: "วิของชำ (ร้านข้าง ๆ)",
+    title: "จุดแลกเหรียญ 10 บาท",
+    text: "สามารถนำเงินมาแลกเป็นเหรียญ 10 บาทได้ที่ร้านวิของชำ",
+    place: "ร้านวิของชำ",
     hours: "05:30–21:00 น.",
-    warning: "แลกเหรียญได้เฉพาะช่วงที่ร้านวิของชำเปิด — เครื่องซักผ้าเปิด 24 ชม. แต่หากร้านวิของชำปิด จะไม่สามารถแลกเหรียญที่ร้านได้",
+    warning: "แลกเหรียญได้เฉพาะช่วงเวลาที่ร้านวิของชำเปิดเท่านั้น",
   },
   support: {
-    intro: "หากพบปัญหาขณะใช้เครื่องซักผ้า สามารถติดต่อเจ้าของเครื่องได้โดยตรง",
-    owners: [
-      { name: "คุณต๋อง", phone: "0652325188", phoneDisplay: "065-232-5188" },
-      { name: "คุณใหม่", phone: "0990354032", phoneDisplay: "099-035-4032" },
-    ] as Owner[],
-    fallback: { place: "ร้านวิของชำ", phone: "0959375014", phoneDisplay: "095-937-5014" },
+    intro: "หากพบปัญหาขณะใช้เครื่องซักผ้าหยอดเหรียญ สามารถแจ้งได้ 2 ทาง",
+    ways: [
+      { step: "1", title: "แจ้งร้านวิของชำ", text: "สามารถบอกทางร้านวิของชำให้ช่วยรับเรื่องได้" },
+      { step: "2", title: "ติดต่อเจ้าของบ้าน/เจ้าของเครื่องโดยตรง", text: "สามารถโทรแจ้งปัญหาได้โดยตรงเพื่อให้ช่วยตรวจสอบเครื่อง" },
+    ],
+    owner: { name: "คุณต๋อง", phone: "0652325188", phoneDisplay: "065-232-5188" } as Owner,
+    note: "📌 หากเครื่องมีปัญหา สามารถแจ้งร้านวิของชำได้ หรือโทรแจ้งเจ้าของบ้านโดยตรง",
   },
 };
 
