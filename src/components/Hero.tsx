@@ -1,68 +1,86 @@
+"use client";
+
 import Image from "next/image";
-import type { CSSProperties } from "react";
-import { site } from "@/data/site";
+import { owners, site } from "@/data/site";
+import { useOpenNow } from "@/lib/useOpenNow";
+
+// ขีดเล่น ๆ ข้างชื่อร้าน (แบบวาดมือ)
+function Sparks({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 40 40" className={`h-10 w-10 text-caramel ${className}`} fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden>
+      <path d="M6 20h12M10 8l8 8M10 32l8-8" />
+    </svg>
+  );
+}
 
 export function Hero() {
+  const status = useOpenNow();
+  const main = owners[0];
+
   return (
     <section id="top" className="relative overflow-hidden bg-cream">
-      {/* ควันจากเตาลอยเบา ๆ */}
-      <span className="animate-smoke absolute left-10 top-16 text-2xl text-ash">〰</span>
-      <span className="animate-smoke absolute left-16 top-12 text-2xl text-ash" style={{ animationDelay: ".8s" }}>〰</span>
-      <span
-        className="animate-float absolute bottom-32 left-1/3 text-2xl opacity-60"
-        style={{ "--r": "20deg", animationDelay: "1s" } as CSSProperties}
-      >
-        🍃
-      </span>
+      {/* แถบครีมอ่อนเฉียง ๆ ด้านหลัง */}
+      <div className="pointer-events-none absolute -left-24 top-24 h-72 w-[130%] -rotate-6 rounded-full bg-rice/15" />
 
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-12 md:grid-cols-2 md:pt-20">
-        <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-warm px-3 py-1 text-xs font-semibold text-pork ring-1 ring-rice">
-            🕟 เริ่มขายตี 4 ครึ่ง • ขายจนกว่าจะหมด
-          </span>
-          <h1 className="font-display mt-4 text-4xl font-bold leading-[1.6] text-pork md:text-6xl">
-            <span className="block text-5xl leading-[1.5] text-caramel md:text-7xl">หมูปิ้ง</span>
-            <span className="mt-2 block">ข้าวเหนียว</span>
-            <span className="mt-3 block text-2xl leading-[1.6] text-charcoal md:text-3xl">วิริญา</span>
-            <span className="mt-2 block text-base leading-[1.6] font-semibold text-pork">Wiriya <span className="text-caramel">Moo Ping</span></span>
-          </h1>
-          <p className="font-display mt-4 text-lg font-semibold text-charcoal">ย่างสด ๆ หน้าร้าน หอมควันถ่าน ไม้ละ 5 บาท 🍢🔥</p>
-          <p className="mt-3 max-w-md leading-relaxed text-ash">
-            หมูหมักสูตรร้าน ย่างบนเตาถ่านทีละไม้ตั้งแต่เช้ามืด กินคู่ข้าวเหนียวร้อน ๆ ห่อละ 5 บาท ซื้อกี่ไม้ก็ได้ อิ่มง่าย ราคาเบา ๆ
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#menu" className="rounded-full bg-caramel px-6 py-3 font-semibold text-white shadow-lg shadow-caramel/40 transition hover:bg-caramel-deep">
-              🍢 ดูเมนูและราคา
-            </a>
-            <a href="#location" className="rounded-full bg-warm px-6 py-3 font-semibold text-pork ring-1 ring-rice transition hover:bg-white">
-              📍 ร้านอยู่ที่ไหน
-            </a>
+      <div className="relative mx-auto max-w-6xl px-4 pb-12 pt-10 md:pt-14">
+        <div className="grid items-center gap-8 md:grid-cols-2">
+          {/* ชื่อร้าน */}
+          <div className="relative">
+            <Sparks className="absolute -left-12 top-36 hidden rotate-180 lg:block" />
+            <h1 className="font-display relative">
+              <span className="block text-6xl font-bold leading-[1.4] text-pork md:text-7xl lg:text-8xl">หมูปิ้ง</span>
+              <span className="block text-6xl font-bold leading-[1.4] text-caramel md:text-7xl lg:text-8xl">วิริญา</span>
+              <Sparks className="absolute right-4 top-6 hidden md:block" />
+            </h1>
+            <p className="font-display mt-2 text-2xl font-bold text-caramel md:text-3xl">Wiriya Moo Ping</p>
+            <p className="font-display mt-4 text-xl font-bold text-charcoal md:text-2xl">หมูปิ้งไม้ละ 5 บาท ข้าวเหนียวห่อละ 5 บาท</p>
+            <p className="mt-1 text-ash">ย่างร้อน ๆ หอม ๆ อร่อยแบบบ้าน ๆ</p>
           </div>
-          <div className="mt-6 flex flex-wrap gap-2 text-sm">
-            <span className="font-display rounded-full bg-pork px-4 py-1.5 text-lg font-bold text-cream shadow">หมูปิ้ง ไม้ละ 5.-</span>
-            <span className="font-display rounded-full bg-warm px-4 py-1.5 text-lg font-bold text-charcoal ring-1 ring-rice shadow">ข้าวเหนียว ห่อละ 5.-</span>
+
+          {/* รูปหมูปิ้ง */}
+          <div className="relative">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2rem] bg-warm shadow-2xl ring-8 ring-warm">
+              <Image src="/images/moo-ping-leaf.jpg" alt="หมูปิ้งย่างใหม่ ๆ บนใบตอง" fill priority sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-br from-charcoal/45 via-transparent to-transparent" />
+              <p className="font-display absolute left-5 top-5 max-w-[60%] text-lg font-bold leading-relaxed text-cream drop-shadow md:text-xl">
+                หมูปิ้งร้อน ๆ
+                <br />
+                ข้าวเหนียวเหนียว ๆ
+                <br />
+                อร่อยลงตัว ♥
+              </p>
+            </div>
+            <Sparks className="absolute -right-2 -top-6 hidden -rotate-45 md:block" />
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-sm">
-          <div className="absolute inset-0 -rotate-6 rounded-[2.5rem] bg-rice/50" />
-          <div className="relative aspect-square overflow-hidden rounded-[2.5rem] bg-warm shadow-2xl ring-4 ring-caramel/50">
-            <Image
-              src="/images/moo-ping-leaf.jpg"
-              alt="หมูปิ้งย่างใหม่ ๆ บนใบตอง"
-              fill
-              priority
-              sizes="(min-width: 768px) 384px, 90vw"
-              className="object-cover"
-            />
-          </div>
-          <span className="font-display absolute -bottom-4 -right-2 rotate-6 rounded-2xl bg-caramel px-4 py-2 text-xl font-bold text-white shadow-lg">
-            ไม้ละ 5.-
+        {/* สถานะร้าน */}
+        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-2xl bg-leaf/15 px-5 py-4 text-sm text-charcoal ring-1 ring-leaf/30">
+          <span className="font-display flex items-center gap-2 text-lg font-bold text-leaf">
+            <span className={`h-3 w-3 rounded-full ${status?.open ? "bg-leaf" : "bg-caramel"}`} />
+            {status === null ? "…" : status.open ? "กำลังขาย" : "ปิดแล้ววันนี้"}
           </span>
+          <span className="hidden h-5 w-px bg-leaf/30 sm:block" />
+          <span>🕓 เริ่มประมาณ {site.open} น.</span>
+          <span className="hidden h-5 w-px bg-leaf/30 sm:block" />
+          <span>🧺 ขายจนกว่าของจะหมด</span>
+        </div>
+
+        {/* โทรก่อนมา */}
+        <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center">
+          <a
+            href={`tel:${main.phone}`}
+            className="font-display inline-flex items-center justify-center gap-3 rounded-full bg-caramel px-8 py-4 text-2xl font-bold text-white shadow-lg shadow-caramel/40 transition hover:bg-caramel-deep"
+          >
+            📞 โทรสอบถามก่อนมา
+          </a>
+          <p className="text-sm leading-relaxed text-pork">
+            หมูปิ้งมักหมดเร็วในแต่ละวัน
+            <br />
+            แนะนำให้โทรสอบถามก่อนเดินทางมานะคะ
+          </p>
         </div>
       </div>
-
-      <span className="sr-only">{site.tagline}</span>
     </section>
   );
 }

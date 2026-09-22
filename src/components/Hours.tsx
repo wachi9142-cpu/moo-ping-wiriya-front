@@ -1,26 +1,30 @@
+"use client";
+
 import { details, site } from "@/data/site";
+import { useOpenNow } from "@/lib/useOpenNow";
 
 export function Hours() {
+  const status = useOpenNow();
+
   return (
-    <section id="hours" className="mx-auto max-w-6xl px-4 pb-6 pt-20">
-      <div className="mx-auto max-w-2xl overflow-hidden rounded-[2rem] bg-warm shadow-xl ring-4 ring-rice/50">
-        <div className="bg-pork px-6 py-6 text-center text-cream">
-          <p className="font-display text-2xl font-bold text-cream">🕟 เริ่มขายตั้งแต่ตี 4 ครึ่ง</p>
-          <p className="mt-1 text-sm text-cream/85">
-            โดยทั่วไปขายช่วงเช้าประมาณ {site.open}–{site.closeApprox} น. — ขายจนกว่าหมูปิ้งจะหมด
+    <section id="hours" className="mx-auto max-w-6xl px-4 py-10">
+      <div className="grid gap-6 overflow-hidden rounded-[2rem] bg-warm shadow-lg shadow-pork/10 ring-1 ring-rice/40 md:grid-cols-[1fr_1.4fr]">
+        <div className="flex flex-col justify-center bg-pork p-8 text-cream">
+          <p className="text-sm text-cream/80">🕓 เวลา/สถานะ</p>
+          <p className="font-display mt-2 text-3xl font-bold">เริ่มขาย {site.open} น.</p>
+          <p className="mt-1 text-cream/85">โดยทั่วไปถึงประมาณ {site.closeApprox} น. — ขายจนกว่าของจะหมด</p>
+          <p className={`font-display mt-5 inline-flex w-fit items-center gap-2 rounded-full px-4 py-2 text-lg font-bold ${status?.open ? "bg-leaf text-white" : "bg-cream text-pork"}`}>
+            <span className={`h-3 w-3 rounded-full ${status?.open ? "bg-white" : "bg-caramel"}`} />
+            {status === null ? "…" : status.open ? "ตอนนี้กำลังขาย" : "ตอนนี้ปิดแล้ว — เจอกันพรุ่งนี้เช้า"}
           </p>
         </div>
-        <ul className="divide-y divide-rice/30 px-6 py-2">
+        <ul className="grid gap-2 p-6 sm:grid-cols-2">
           {details.map((d) => (
-            <li key={d} className="py-3 text-sm text-charcoal">
+            <li key={d} className="rounded-2xl bg-cream px-4 py-3 text-sm text-charcoal ring-1 ring-rice/40">
               {d}
             </li>
           ))}
         </ul>
-        <div className="space-y-1 bg-warm px-6 py-5 text-center">
-          <p className="font-display font-bold text-pork">🔥 ย่างไปขายไป หมดแล้วหมดเลยน้า</p>
-          <p className="text-xs text-ash">หมูปิ้งมีจำนวนจำกัดและอาจหมดเร็วกว่าปกติ หากต้องการความแน่นอนควรโทรถามร้านก่อนมา</p>
-        </div>
       </div>
     </section>
   );

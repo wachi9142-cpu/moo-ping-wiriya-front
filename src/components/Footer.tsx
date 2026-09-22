@@ -1,18 +1,26 @@
-import { LogoMark } from "./Logo";
 import { owners, site } from "@/data/site";
+import { LogoMark, LogoText } from "./Logo";
+
+// เตาถ่านวาดเส้น มุมขวาของ footer
+function Grill() {
+  return (
+    <svg viewBox="0 0 80 64" className="h-16 w-20 text-rice/80" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden>
+      <path d="M28 6c-3 4 3 6 0 10M40 4c-3 4 3 6 0 10M52 6c-3 4 3 6 0 10" />
+      <ellipse cx="40" cy="30" rx="30" ry="8" />
+      <path d="M10 30v10a30 8 0 0 0 60 0V30M20 46l-6 12M60 46l6 12M40 48v12" />
+    </svg>
+  );
+}
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal pb-24 text-warm lg:pb-0">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3">
-        <div>
-          <LogoMark className="mb-3 h-18 w-18" />
-          <p className="font-display text-2xl font-bold text-rice">🍢 หมูปิ้งวิริญา</p>
-          <p className="text-sm font-semibold text-cream/80">Wiriya <span className="text-caramel">Moo Ping</span></p>
-          <p className="mt-2 text-sm text-warm/85">🍢 {site.tagline}</p>
+    <footer id="contact" className="bg-pork-deep pb-24 text-cream lg:pb-0">
+      <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-10 md:grid-cols-[auto_1fr_auto_auto]">
+        <div className="flex items-center gap-3">
+          <LogoMark className="h-14 w-14" />
+          <LogoText onDark />
         </div>
         <div className="space-y-1 text-sm">
-          <p>📍 {site.address}</p>
           {owners.map((o) => (
             <p key={o.phone}>
               📞 {o.name}{" "}
@@ -21,15 +29,13 @@ export function Footer() {
               </a>
             </p>
           ))}
+          <p className="text-cream/70">📍 {site.address}</p>
         </div>
-        <div className="space-y-1 text-sm">
-          <p>🕟 เริ่มขาย {site.open} น. ทุกวัน</p>
-          <p>🔥 ขายจนกว่าจะหมด (ประมาณ {site.closeApprox} น.)</p>
-          <p className="mt-2 inline-block rounded-full bg-warm/10 px-3 py-1 text-xs font-semibold">🚫 ไม่มีบริการ Delivery</p>
-        </div>
+        <p className="font-display -rotate-3 text-lg font-bold text-rice">ขอบคุณที่อุดหนุนค่ะ ♥</p>
+        <Grill />
       </div>
-      <p className="border-t border-warm/15 py-4 text-center text-xs text-warm/60">
-        © {new Date().getFullYear()} {site.name} • ย่างด้วยใจทุกเช้า 🔥
+      <p className="border-t border-cream/15 py-4 text-center text-xs text-cream/60">
+        © {new Date().getFullYear()} {site.name} · {site.nameEn}
       </p>
     </footer>
   );

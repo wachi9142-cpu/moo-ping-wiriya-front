@@ -2,68 +2,57 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { owners, site } from "@/data/site";
 import { LogoMark, LogoText } from "./Logo";
 
 const links = [
-  { href: "/#menu", label: "🍢 เมนู" },
-  { href: "/#gallery", label: "📸 รูปร้าน" },
-  { href: "/#hours", label: "🕟 เวลาขาย" },
-  { href: "/#location", label: "📍 ร้านอยู่ที่ไหน" },
-  { href: "/#laundry", label: "🧺 ซักผ้าหยอดเหรียญ" },
-  { href: "/#reviews", label: "⭐ รีวิว" },
+  { href: "#top", label: "หน้าแรก", icon: "🏠" },
+  { href: "#menu", label: "เมนู", icon: "🍢" },
+  { href: "#shop", label: "ร้าน", icon: "🏪" },
+  { href: "#hours", label: "เวลา/สถานะ", icon: "🕓" },
+  { href: "#reviews", label: "รีวิว", icon: "⭐" },
+  { href: "#laundry", label: "เครื่องซักผ้าหยอดเหรียญ", icon: "🧺" },
+  { href: "#contact", label: "ติดต่อ", icon: "📞" },
 ];
 
-type OpenState = { open: boolean } | null;
-
-// ร้านเปิดตี 4 ครึ่ง ขายจนหมด (ประมาณ 9 โมง) — ใช้เวลาไทย
-function useOpenNow(): OpenState {
-  const [state, setState] = useState<OpenState>(null);
-  useEffect(() => {
-    const check = () => {
-      const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Bangkok" }));
-      const [oh, om] = site.open.split(":").map(Number);
-      const [ch, cm] = site.closeApprox.split(":").map(Number);
-      const mins = now.getHours() * 60 + now.getMinutes();
-      setState({ open: mins >= oh * 60 + om && mins < ch * 60 + cm });
-    };
-    check();
-    const t = setInterval(check, 60_000);
-    return () => clearInterval(t);
-  }, []);
-  return state;
-}
-
 export function TopBar() {
-  const status = useOpenNow();
   const [menuOpen, setMenuOpen] = useState(false);
-  const main = owners[0];
+  const [active, setActive] = useState("#top");
+
+  // ขีดเส้นใต้เมนูตาม section ที่กำลังดูอยู่
+  useEffect(() => {
+    const els = links.map((l) => document.getElementById(l.href.slice(1))).filter(Boolean) as HTMLElement[];
+    const io = new IntersectionObserver(
+      (entries) => {
+        const hit = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (hit) setActive(`#${hit.target.id}`);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.2, 0.5] },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-rice/40 bg-pork text-cream shadow-md shadow-pork/20">
+    <header className="sticky top-0 z-50 bg-pork text-cream shadow-md shadow-pork/20">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2">
-        <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
-          <LogoMark className="h-11 w-11 shrink-0 drop-shadow" />
-          <span className="min-w-0">
-            <LogoText onDark />
-            <span className="mt-0.5 block text-[11px] text-cream/80">
-              {status === null ? "…" : status.open ? "🟢 น่าจะเปิดอยู่ — ขายจนกว่าจะหมด" : `🔴 ปิดอยู่ — เปิดพรุ่งนี้ ${site.open} น.`}
-            </span>
-          </span>
+        <Link href="#top" className="flex min-w-0 items-center gap-3">
+          <LogoMark className="h-12 w-12 shrink-0 drop-shadow" />
+          <LogoText onDark />
         </Link>
 
-        <nav className="hidden shrink-0 items-center gap-2 text-sm font-medium lg:flex xl:gap-4">
+        <nav className="hidden items-center gap-1 text-sm font-medium lg:flex">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="whitespace-nowrap transition hover:text-rice">
+            <a
+              key={l.href}
+              href={l.href}
+              className={`whitespace-nowrap px-2.5 py-2 transition hover:text-rice xl:px-3 ${
+                active === l.href ? "border-b-2 border-rice text-rice" : "border-b-2 border-transparent"
+              }`}
+            >
+              <span className="mr-1">{l.icon}</span>
               {l.label}
-            </Link>
+            </a>
           ))}
-          <a
-            href={`tel:${main.phone}`}
-            className="whitespace-nowrap rounded-full bg-caramel px-4 py-2 text-white shadow-md shadow-caramel/30 transition hover:bg-caramel-deep"
-          >
-            📞 {main.phoneDisplay}
-          </a>
         </nav>
 
         <button
@@ -82,16 +71,12 @@ export function TopBar() {
           <ul className="flex flex-col gap-1 text-sm font-medium">
             {links.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} onClick={() => setMenuOpen(false)} className="block rounded-xl px-3 py-3 hover:bg-pork">
+                <a href={l.href} onClick={() => setMenuOpen(false)} className="block rounded-xl px-3 py-3 hover:bg-pork">
+                  <span className="mr-2">{l.icon}</span>
                   {l.label}
-                </Link>
+                </a>
               </li>
             ))}
-            <li>
-              <a href={`tel:${main.phone}`} className="mt-1 block rounded-xl bg-caramel px-3 py-3 text-center text-white">
-                📞 โทร {main.name} {main.phoneDisplay}
-              </a>
-            </li>
           </ul>
         </nav>
       )}

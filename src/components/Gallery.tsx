@@ -88,7 +88,7 @@ export function Gallery() {
   return (
     <section id="gallery" className="bg-cream py-20">
       <div className="mx-auto max-w-6xl px-4">
-        <SectionTitle sub="รูปจริงจากหน้าร้าน — แตะที่รูปเพื่อดูใกล้ ๆ หรือกด ＋ เพื่อเพิ่มรูปของคุณเอง">📸 บรรยากาศหน้าร้าน</SectionTitle>
+        <SectionTitle sub="รูปจริงจากหน้าร้าน — แตะที่รูปเพื่อดูใกล้ ๆ หรือกด ＋ เพื่อเพิ่มรูปของคุณเอง">🏪 ร้านของเรา</SectionTitle>
         <input ref={fileRef} type="file" accept="image/*" hidden onChange={(e) => onFile(e.target.files?.[0])} />
 
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
