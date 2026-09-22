@@ -86,69 +86,79 @@ export function Gallery() {
   };
 
   return (
-    <section id="gallery" className="bg-cream py-20">
+    <section id="gallery" className="bg-cream py-16">
       <div className="mx-auto max-w-6xl px-4">
         <SectionTitle sub="รูปจริงจากหน้าร้าน — แตะที่รูปเพื่อดูใกล้ ๆ หรือกด ＋ เพื่อเพิ่มรูปของคุณเอง">🏪 ร้านของเรา</SectionTitle>
         <input ref={fileRef} type="file" accept="image/*" hidden onChange={(e) => onFile(e.target.files?.[0])} />
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {photoSlots.map((slot) => {
             const up = custom[slot.id];
             const src = up?.src ?? slot.src;
             const caption = up?.caption ?? slot.caption ?? slot.label;
             return (
-              <figure key={slot.id} className="flex flex-col overflow-hidden rounded-2xl bg-warm ring-1 ring-rice/40">
+              <figure key={slot.id} className="group overflow-hidden rounded-2xl bg-warm shadow-sm ring-1 ring-rice/40">
                 {src ? (
-                  <button type="button" onClick={() => setOpen({ src, caption })} className="block w-full cursor-zoom-in">
-                    {up ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={src} alt={caption} className="aspect-[4/3] w-full object-cover" />
-                    ) : (
-                      <Image
-                        src={src}
-                        alt={caption}
-                        width={600}
-                        height={450}
-                        sizes="(min-width: 1024px) 280px, (min-width: 640px) 33vw, 50vw"
-                        className="aspect-[4/3] w-full object-cover transition hover:scale-[1.03]"
-                      />
-                    )}
-                  </button>
+                  <div className="relative">
+                    <button type="button" onClick={() => setOpen({ src, caption })} className="block w-full cursor-zoom-in">
+                      {up ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={src} alt="" className="aspect-[4/3] w-full bg-cream object-cover" />
+                      ) : (
+                        <Image
+                          src={src}
+                          alt=""
+                          width={600}
+                          height={450}
+                          sizes="(min-width: 1024px) 280px, (min-width: 640px) 33vw, 50vw"
+                          className="aspect-[4/3] w-full bg-cream object-cover"
+                        />
+                      )}
+                    </button>
+                    {/* ปุ่มจัดการรูป — ลอยมุมขวาบน ไม่เบียดคำบรรยาย */}
+                    <div className="absolute right-2 top-2 flex gap-1 opacity-0 transition group-hover:opacity-100 focus-within:opacity-100 max-md:opacity-100">
+                      <button
+                        type="button"
+                        onClick={() => pickFor(slot)}
+                        className="rounded-full bg-charcoal/70 px-2.5 py-1 text-[11px] font-semibold text-cream backdrop-blur-sm hover:bg-charcoal"
+                      >
+                        เปลี่ยน
+                      </button>
+                      {up && (
+                        <button
+                          type="button"
+                          onClick={() => remove(slot)}
+                          className="rounded-full bg-charcoal/70 px-2.5 py-1 text-[11px] font-semibold text-cream backdrop-blur-sm hover:bg-caramel-deep"
+                        >
+                          ลบ
+                        </button>
+                      )}
+                    </div>
+                  </div>
                 ) : (
                   <button
                     type="button"
                     onClick={() => pickFor(slot)}
                     disabled={busy === slot.id}
-                    className="grid aspect-[4/3] w-full place-items-center border-2 border-dashed border-caramel/60 bg-caramel/5 px-2 text-center text-xs text-pork transition hover:bg-caramel/10"
+                    className="grid aspect-[4/3] w-full place-items-center border-2 border-dashed border-caramel/50 bg-caramel/5 px-3 text-center transition hover:bg-caramel/10"
                   >
                     <span>
                       <span className="block text-3xl">{busy === slot.id ? "⏳" : slot.emoji}</span>
-                      <span className="mt-1 block font-semibold">＋ เพิ่มภาพ{slot.label}</span>
+                      <span className="mt-1.5 block text-xs font-semibold leading-snug text-pork">＋ เพิ่มภาพ</span>
                     </span>
                   </button>
                 )}
-                <figcaption className="flex items-center justify-between gap-2 px-3 py-2 text-xs text-ash">
-                  <span className="truncate">
-                    {slot.emoji} {caption}
-                  </span>
-                  {src && (
-                    <span className="flex shrink-0 gap-1">
-                      <button type="button" onClick={() => pickFor(slot)} className="rounded-full bg-cream px-2 py-0.5 font-semibold ring-1 ring-rice/60 hover:bg-white">
-                        เปลี่ยน
-                      </button>
-                      {up && (
-                        <button type="button" onClick={() => remove(slot)} className="rounded-full bg-cream px-2 py-0.5 font-semibold text-caramel-deep ring-1 ring-caramel/60 hover:bg-white">
-                          ลบ
-                        </button>
-                      )}
-                    </span>
-                  )}
+                <figcaption className="px-3 py-2.5">
+                  <p className="font-display truncate text-sm font-bold leading-relaxed text-pork" title={slot.label}>
+                    {slot.emoji} {slot.label}
+                  </p>
+                  <p className="mt-0.5 line-clamp-2 text-xs leading-relaxed text-ash">{src ? caption : "ยังไม่มีรูป"}</p>
                 </figcaption>
               </figure>
             );
           })}
         </div>
-        <p className="mt-4 text-center text-xs text-ash">รูปที่เพิ่มเองจะถูกเก็บไว้ในเครื่องนี้เท่านั้น</p>
+        <p className="mt-5 text-center text-xs text-ash">รูปที่เพิ่มเองจะถูกเก็บไว้ในเครื่องนี้เท่านั้น</p>
       </div>
 
       {open && (
