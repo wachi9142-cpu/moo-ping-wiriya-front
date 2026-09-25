@@ -16,7 +16,7 @@ export default function Home() {
         <Location />
       </section>
       <Hours />
-      <section className="mx-auto grid max-w-6xl gap-6 px-4 py-10 lg:grid-cols-2">
+      <section className="mx-auto grid max-w-6xl items-start gap-6 px-4 py-10 lg:grid-cols-2">
         <Reviews />
         <Laundry />
       </section>

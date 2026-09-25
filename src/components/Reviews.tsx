@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { reviews as seed } from "@/data/site";
 import { fetchReviews, submitReview, type ApiReview } from "@/lib/api";
 
 function Stars({ n }: { n: number }) {
@@ -37,9 +36,7 @@ export function Reviews() {
       .finally(() => setLoading(false));
   }, []);
 
-  // ยังไม่มีรีวิวจริงในระบบ → โชว์รีวิวตัวอย่างไปก่อน
-  const all: ApiReview[] = list.length > 0 ? list : seed;
-  const shown = showAll ? all : all.slice(0, 2);
+  const shown = showAll ? list : list.slice(0, 2);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,7 +67,7 @@ export function Reviews() {
             <p className="text-sm text-ash">ขอบคุณทุกความประทับใจค่ะ</p>
           </div>
         </div>
-        {all.length > 2 && (
+        {list.length > 2 && (
           <button type="button" onClick={() => setShowAll((v) => !v)} className="shrink-0 text-sm font-semibold text-pork hover:underline">
             {showAll ? "ย่อ ↑" : "ดูทั้งหมด →"}
           </button>
@@ -84,9 +81,15 @@ export function Reviews() {
       </p>
 
       {loading ? (
-        <p className="mt-5 flex-1 text-sm text-ash">กำลังโหลดรีวิว…</p>
+        <p className="mt-5 text-sm text-ash">กำลังโหลดรีวิว…</p>
+      ) : list.length === 0 ? (
+        <div className="mt-5 rounded-2xl bg-warm p-6 text-center ring-1 ring-rice/40">
+          <p className="text-3xl">🍢</p>
+          <p className="font-display mt-2 font-bold leading-[1.8] text-pork">ยังไม่มีรีวิว</p>
+          <p className="mt-1 text-sm leading-[1.8] text-ash">มาเป็นคนแรกกันนะคะ 💛</p>
+        </div>
       ) : (
-        <ul className="mt-5 flex-1 space-y-3">
+        <ul className="mt-5 space-y-3">
           {shown.map((r) => (
             <li key={r.id} className="flex gap-3 rounded-2xl bg-warm p-4 ring-1 ring-rice/40">
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-cream text-xl">{r.avatar}</span>

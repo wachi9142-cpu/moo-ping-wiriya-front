@@ -59,7 +59,7 @@ export const photoSlots: PhotoSlot[] = [
   { id: "pork", label: "หมูปิ้ง", emoji: "🥩", src: "/images/moo-ping-leaf.jpg", caption: "หมูปิ้งย่างใหม่ ๆ บนใบตอง" },
   { id: "rice", label: "ข้าวเหนียว", emoji: "🍚", src: "/images/sticky-rice.jpg", caption: "ข้าวเหนียวร้อน ๆ" },
   { id: "laundry", label: "เครื่องซักผ้า", emoji: "🧺", src: "/images/laundry.jpg", caption: "เครื่องซักผ้าหยอดเหรียญ ถัง 30 / 40 บาท" },
-  { id: "coin", label: "บริเวณจุดแลกเหรียญ", emoji: "🪙" },
+  { id: "coin", label: "บริเวณจุดแลกเหรียญ", emoji: "🪙", src: "/images/coin-exchange.jpg", caption: "ร้านวิของชำ — แลกเหรียญ 10 บาทที่นี่" },
   { id: "sign", label: "ป้ายร้าน", emoji: "🪧", src: "/images/sign.jpg", caption: "ป้ายร้าน หมูปิ้งข้าวเหนียว ไม้ละ 5 บาท" },
   { id: "closeup", label: "หมูปิ้งใกล้ ๆ", emoji: "🔍", src: "/images/closeup.jpg", caption: "หมูนุ่ม ฉ่ำ ๆ ใกล้ ๆ" },
   { id: "skewers", label: "หมูปิ้งหลายไม้", emoji: "🍢", src: "/images/skewers-leaf.jpg", caption: "ไม้ละ 5 บาท ซื้อกี่ไม้ก็ได้" },
@@ -97,11 +97,3 @@ export const laundry = {
     note: "📌 หากเครื่องมีปัญหา สามารถแจ้งร้านวิของชำได้ หรือโทรแจ้งเจ้าของบ้านโดยตรง",
   },
 };
-
-export type Review = { id: string; user: string; avatar: string; rating: number; text: string; date: string };
-
-export const reviews: Review[] = [
-  { id: "w1", user: "ฟ่าง", avatar: "🐱", rating: 5, text: "หมูปิ้งหอมมาก ตอนเช้าแวะซื้อก่อนออกไปทำงาน อร่อยดีค่ะ", date: "2026-09-18" },
-  { id: "w2", user: "ลูกค้าหน้าร้าน", avatar: "🧑", rating: 4, text: "หมูนุ่ม ข้าวเหนียวร้อน ๆ ราคาไม่แพง", date: "2026-09-12" },
-  { id: "w3", user: "พี่ต้น", avatar: "🧔", rating: 5, text: "ไม้ละ 5 บาท ซื้อ 10 ไม้ก็แค่ 50 อิ่มทั้งบ้าน ต้องมาเช้า ๆ ไม่งั้นหมด", date: "2026-09-05" },
-];
