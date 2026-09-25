@@ -149,10 +149,10 @@ export function Gallery() {
                   </button>
                 )}
                 <figcaption className="px-3 py-2.5">
-                  <p className="font-display truncate text-sm font-bold leading-relaxed text-pork" title={slot.label}>
+                  <p className="font-display text-sm font-bold leading-[1.9] text-pork">
                     {slot.emoji} {slot.label}
                   </p>
-                  <p className="mt-0.5 line-clamp-2 text-xs leading-relaxed text-ash">{src ? caption : "ยังไม่มีรูป"}</p>
+                  <p className="mt-0.5 text-xs leading-[1.8] text-ash">{src ? caption : "ยังไม่มีรูป"}</p>
                 </figcaption>
               </figure>
             );

@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ฐานข้อมูลและรูปที่อัปโหลด (ไม่ขึ้น git)
+/data

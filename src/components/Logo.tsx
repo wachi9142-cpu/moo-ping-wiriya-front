@@ -20,7 +20,7 @@ export function LogoMark({ className = "h-11 w-11" }: { className?: string }) {
 export function LogoText({ onDark = false }: { onDark?: boolean }) {
   return (
     <span className="min-w-0 leading-tight">
-      <span className={`font-display block truncate text-lg font-bold sm:text-xl ${onDark ? "text-cream" : "text-pork"}`}>หมูปิ้งวิริญา</span>
+      <span className={`font-display block text-lg font-bold leading-[1.7] sm:text-xl ${onDark ? "text-cream" : "text-pork"}`}>หมูปิ้งวิริญา</span>
       <span className={`font-display block text-xs font-bold tracking-wide ${onDark ? "text-rice" : "text-pork"}`}>
         Wiriya <span className="text-caramel">Moo Ping</span>
       </span>

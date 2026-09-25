@@ -51,7 +51,7 @@ body {
 .font-display {
   font-family: var(--font-display), var(--font-sans), sans-serif;
   /* สระบน/วรรณยุกต์ไทยต้องการ line-height เผื่อไว้ */
-  line-height: 1.45;
+  line-height: 1.6;
 }
 
 @keyframes smoke {

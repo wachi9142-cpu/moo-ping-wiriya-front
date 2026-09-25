@@ -16,10 +16,10 @@ export const site = {
 
 export type Owner = { name: string; phone: string; phoneDisplay: string };
 
-// ติดต่อร้านหมูปิ้ง
+// ติดต่อร้านหมูปิ้ง — คุณต๋อง กับคุณนิ
 export const owners: Owner[] = [
   { name: "คุณต๋อง", phone: "0652325188", phoneDisplay: "065-232-5188" },
-  { name: "คุณใหม่", phone: "0624314828", phoneDisplay: "062-431-4828" },
+  { name: "คุณนิ", phone: "0991017429", phoneDisplay: "099-101-7429" },
 ];
 
 export type MenuItem = { name: string; price: number; unit: string; desc: string; image: string; badge?: string };
@@ -89,7 +89,11 @@ export const laundry = {
       { step: "1", title: "แจ้งร้านวิของชำ", text: "สามารถบอกทางร้านวิของชำให้ช่วยรับเรื่องได้" },
       { step: "2", title: "ติดต่อเจ้าของบ้าน/เจ้าของเครื่องโดยตรง", text: "สามารถโทรแจ้งปัญหาได้โดยตรงเพื่อให้ช่วยตรวจสอบเครื่อง" },
     ],
-    owner: { name: "คุณต๋อง", phone: "0652325188", phoneDisplay: "065-232-5188" } as Owner,
+    // เจ้าของเครื่องซักผ้า — คุณต๋อง กับคุณใหม่ (คนละชุดกับเบอร์ร้านหมูปิ้ง)
+    owners: [
+      { name: "คุณต๋อง", phone: "0652325188", phoneDisplay: "065-232-5188" },
+      { name: "คุณใหม่", phone: "0624314828", phoneDisplay: "062-431-4828" },
+    ] as Owner[],
     note: "📌 หากเครื่องมีปัญหา สามารถแจ้งร้านวิของชำได้ หรือโทรแจ้งเจ้าของบ้านโดยตรง",
   },
 };

@@ -41,9 +41,17 @@ export function Laundry() {
           <p className="font-display flex items-center gap-2 text-lg font-bold text-sky-900">⚠️ หากเครื่องซักผ้ามีปัญหา</p>
           <p className="mt-1 text-sm text-charcoal">แจ้งได้ที่{support.ways[0].title.replace("แจ้ง", "")}</p>
           <p className="text-sm text-charcoal">หรือโทรแจ้งเจ้าของบ้านโดยตรง</p>
-          <a href={`tel:${support.owner.phone}`} className="mt-3 inline-flex items-center gap-2 rounded-full bg-sky-100 px-4 py-2 text-sm font-bold text-sky-900 ring-1 ring-sky-300 hover:bg-sky-200">
-            📞 {support.owner.name} {support.owner.phoneDisplay}
-          </a>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {support.owners.map((o) => (
+              <a
+                key={o.phone}
+                href={`tel:${o.phone}`}
+                className="inline-flex items-center gap-2 rounded-full bg-sky-100 px-4 py-2 text-sm font-bold leading-[1.7] text-sky-900 ring-1 ring-sky-300 hover:bg-sky-200"
+              >
+                📞 {o.name} {o.phoneDisplay}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </div>
